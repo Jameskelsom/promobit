@@ -1,16 +1,20 @@
-## Welcome to GitHub Pages
+# Processo Seletivo - Analista de BI
 
-You can use the [editor on GitHub](https://github.com/Jameskelsom/promobit/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+Testes com objetivo de avaliar a capacidade analítica e técnica do Analista de dados.
+- CSV: https://drive.google.com/drive/folders/187B990VSdpVf1XcE_Wbyz17_FjygaqkU?usp=sharing
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Teste 1
+Utilizar algum dataviz (Metabase, Tableau, PowerBI etc) para com o CSV enviado para fazer:
+- Ranqueamento de reclamações
+- Quais planos de saúde tiveram mais reclamações
+- Quantidade de beneficiários dos planos com mais reclamações
+- As datas mais recorrentes que aparecem nas reclamações
 
 ```markdown
-Syntax highlighted code block
+Resultado:
+- [POWER BI](https://app.powerbi.com/view?r=eyJrIjoiZmM5YTE3MjktZmRhYi00MzNjLWI3YjctZjA4Y2I2NjNhMzQxIiwidCI6IjJlNjAwMzY4LTk0YWQtNDA0YS1hMTM1LWQ3ODJlY2IwOTY4MiJ9)
 
+[Image](src)
 # Header 1
 ## Header 2
 ### Header 3
