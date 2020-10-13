@@ -12,14 +12,14 @@ Utilizar algum dataviz (Metabase, Tableau, PowerBI etc) para com o CSV enviado p
 
 **Resultado em [POWER BI](https://app.powerbi.com/view?r=eyJrIjoiZmM5YTE3MjktZmRhYi00MzNjLWI3YjctZjA4Y2I2NjNhMzQxIiwidCI6IjJlNjAwMzY4LTk0YWQtNDA0YS1hMTM1LWQ3ODJlY2IwOTY4MiJ9)**
 
-**![Image](https://media-private.canva.com/FSZB4/MAEKg4FSZB4/1/s2.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUH4JWSMIDQ%2F20201013%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20201013T133616Z&X-Amz-Expires=32940&X-Amz-Signature=1800120b466aec964c52795d888d62352cea5658e4869b04a716ea0671749154&X-Amz-SignedHeaders=host&response-expires=Tue%2C%2013%20Oct%202020%2022%3A45%3A16%20GMT)**
+**![Image](https://github.com/Jameskelsom/promobit/blob/gh-pages/pbi.png)**
 
 ### Teste 2
 Fazer a mesma coisa, mas agora com um notebook python
 Utilizar o estilo de gráfico que faça mais sentido com os dados apresentados.
 
 ```markdown
-- Resultado:
+- code:
 import pandas as pd
 import plotly.express as px
 
@@ -95,13 +95,53 @@ print("-"*100)
 print(dt_recorrente)
 print(chart_dt_recorrente_bar.show())
 ```
+**![Resultado](https://github.com/Jameskelsom/promobit/blob/gh-pages/py.png)**
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Jameskelsom/promobit/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+### Teste 3
+**Resolver o seguinte problema no [hackerrank](https://www.hackerrank.com/challenges/interviews/problem)**
+```markdown
+select
+    cts.contest_id
+    ,cts.hacker_id
+    ,cts.name
+    ,sum(chg.total_submissions) total_submissions
+    ,sum(chg.total_accepted_submissions) total_accepted_submissions
+    ,sum(chg.total_views) total_views
+    ,sum(chg.total_unique_views) total_unique_views
+from contests cts
+left join colleges clg on cts.contest_id=clg.contest_id 
+left join (
+    select
+        distinct c.college_id 
+        ,sum(ss.total_submissions) as total_submissions
+        ,sum(ss.total_accepted_submissions) as total_accepted_submissions
+        ,sum(vs.total_views) as total_views
+        ,sum(vs.total_unique_views) as total_unique_views
+    from challenges c
+    LEFT JOIN (
+        select
+            challenge_id
+            ,sum(total_submissions) total_submissions
+            ,sum(total_accepted_submissions) total_accepted_submissions
+        from Submission_Stats
+        group by challenge_id
+        ) ss ON ss.challenge_id = c.challenge_id
+    left join (
+        select
+            challenge_id
+            ,sum(total_views) total_views
+            ,sum(total_unique_views) total_unique_views
+        from View_Stats
+        group by challenge_id
+    ) vs on vs.challenge_id=c.challenge_id 
+    group by c.college_id 
+) chg on clg.college_id=chg.college_id
+group by cts.contest_id
+    ,cts.hacker_id
+    ,cts.name
+having sum(ifnull(chg.total_submissions,0)
+    +ifnull(chg.total_accepted_submissions,0)
+    +ifnull(chg.total_views,0)
+    +ifnull(chg.total_unique_views,0))>0
+    order by cts.contest_id;
+```
